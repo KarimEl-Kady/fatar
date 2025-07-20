@@ -18,4 +18,11 @@ class Meal extends Model
     {
         return $this->belongsTo(Resturant::class, 'resturant_id');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_meals', 'meal_id', 'order_id')
+            ->withPivot('quantity')
+            ->withTimestamps();
+    }
 }

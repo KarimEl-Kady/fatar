@@ -44,4 +44,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_meals', 'meal_id', 'order_id')
+            ->withPivot('quantity')
+            ->withTimestamps();
+    }
 }
